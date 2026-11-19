@@ -1,0 +1,6 @@
+{
+  "key.noforcepack.remove": "Remove Server Resource Pack",
+  "category.noforcepack.general": "No Force Pack",
+  "message.noforcepack.removed": "§aServer resource pack removed!",
+  "message.noforcepack.notfound": "§eNo forced server resource pack found."
+}

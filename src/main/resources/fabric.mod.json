@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "noforcepack",
+  "version": "${version}",
+  "name": "No Force Pack",
+  "description": "Ermöglicht das Entfernen von erzwungenen Server-Ressourcenpaketen aus dem Ressourcenpaket-HUD.",
+  "authors": ["Du"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/noforcepack/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "de.noforcepack.NoForcePack"
+    ]
+  },
+  "mixins": [
+    "noforcepack.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.1",
+    "java": ">=21"
+  }
+}
