@@ -3,8 +3,6 @@ name: Build Mod
 on:
   push:
     branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
   workflow_dispatch:
 
 jobs:
@@ -21,14 +19,13 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Gradle Wrapper ausführbar machen
-        run: chmod +x gradlew
-
-      - name: Gradle Wrapper einrichten
-        uses: gradle/actions/setup-gradle@v3
+      - name: Gradle installieren
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.8'
 
       - name: Mod bauen
-        run: ./gradlew build --no-daemon
+        run: gradle build --no-daemon
 
       - name: JAR als Artifact hochladen
         uses: actions/upload-artifact@v4
@@ -36,14 +33,3 @@ jobs:
           name: noforcepack-jar
           path: build/libs/noforcepack-*.jar
           if-no-files-found: error
-
-      - name: Release erstellen
-        if: github.event_name == 'push'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ github.run_number }}
-          name: "No Force Pack Build #${{ github.run_number }}"
-          files: build/libs/noforcepack-*.jar
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
