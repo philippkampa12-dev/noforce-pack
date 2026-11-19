@@ -5,7 +5,7 @@ on:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
-  workflow_dispatch: # Manuell auslösbar über GitHub UI
+  workflow_dispatch:
 
 jobs:
   build:
@@ -44,7 +44,7 @@ jobs:
           path: build/libs/noforcepack-*.jar
           if-no-files-found: error
 
-      - name: Release erstellen (nur bei Push auf main/master)
+      - name: Release erstellen
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
         uses: softprops/action-gh-release@v2
         with:
